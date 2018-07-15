@@ -519,6 +519,21 @@ contexts:
             3: punctuation.definition.fenced.markdown
           pop: true
         - include: scope:source.ruby
+    - match: '(```|~~~|{%\s*highlight)\s*(elixir)\s*((?:linenos\s*)?%})?$'
+      captures:
+        1: punctuation.definition.fenced.markdown
+        2: variable.language.fenced.markdown
+        3: punctuation.definition.fenced.markdown
+      push:
+        - meta_scope: markup.raw.block.markdown markup.raw.block.fenced.markdown
+        - meta_content_scope: source.elixir
+        - match: '(```|~~~|{%\s*endhighlight\s*%})\n'
+          captures:
+            1: punctuation.definition.fenced.markdown
+            2: variable.language.fenced.markdown
+            3: punctuation.definition.fenced.markdown
+          pop: true
+        - include: scope:source.elixir
     - match: '(```|~~~|{%\s*highlight)\s*(rails|erb|html\+ruby)\s*((?:linenos\s*)?%})?$'
       captures:
         1: punctuation.definition.fenced.markdown

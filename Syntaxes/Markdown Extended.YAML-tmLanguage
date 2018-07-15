@@ -319,6 +319,16 @@ patterns:
   - include: source.ruby
 
 - name: markup.raw.block.markdown markup.raw.block.fenced.markdown
+  begin: (```|~~~|{%\s*highlight)\s*(elixir)\s*((?:linenos\s*)?%})?$
+  end: (```|~~~|{%\s*endhighlight\s*%})\n
+  captures:
+    '1': {name: punctuation.definition.fenced.markdown}
+    '2': {name: variable.language.fenced.markdown}
+    '3': {name: punctuation.definition.fenced.markdown}
+  patterns:
+  - include: source.elixir
+
+- name: markup.raw.block.markdown markup.raw.block.fenced.markdown
   begin: (```|~~~|{%\s*highlight)\s*(rust)\s*((?:linenos\s*)?%})?$
   end: (```|~~~|{%\s*endhighlight\s*%})\n
   captures:
